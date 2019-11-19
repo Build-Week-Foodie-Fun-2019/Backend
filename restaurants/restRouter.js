@@ -2,6 +2,17 @@ const router = require('express').Router();
 
 const dB = require('./restModel');
 
+router.get('/', (req, res) => {
+
+    dB.getAll()
+      .then((restaurants) => {
+        res.status(200).json(restaurants)
+      })
+      .catch(() => {
+        res.status(500).json({ error: "The restaurants information could not be retrieved." })
+      })
+  });
+
 router.post('/', validateRestaurant, (req, res) => {
     // let { restaurants_name, restaurants_cusine, restaurant_hours, restaurant_location, restaurant_rating, restaurant_image } = req.body;
    
