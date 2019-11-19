@@ -1,13 +1,17 @@
 const db = require("../database/db-config");
 
 module.exports = {
-    // get,
+    getAll,
     getById,
     // getUserPosts,
     insert,
     // update,
     // remove,
   };
+
+  function getAll() {
+    return db('restaurants');
+  }
 
   function getById(restaurant_id) {
     return db('restaurants')
