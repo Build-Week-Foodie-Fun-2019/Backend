@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
       })
   });
 
+  router.get('/:id', validateRestaurantId, (req, res) => {
+
+    res.status(200).json({ restaurant: req.restaurant })
+  });
+
 router.post('/', validateRestaurant, (req, res) => {
     // let { restaurants_name, restaurants_cusine, restaurant_hours, restaurant_location, restaurant_rating, restaurant_image } = req.body;
    
@@ -20,6 +25,9 @@ router.post('/', validateRestaurant, (req, res) => {
     const { url } = req;
     res.status(201).json({ postedRestaurant: restaurant, url: url, operation: "POST" })
   });
+
+  
+  
 
   function validateRestaurant(req, res, next) {
 
