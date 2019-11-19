@@ -1,11 +1,16 @@
 const router = require('express').Router();
 
-const Users = require('./users-model.js');
-const restricted = require('../auth/restricted-middleware.js');
+const Users = require('./userModel');
+const authenticate = require('../auth/authenticate-middleware');
 
-router.get('/', restricted, (req, res) => {
+const requestOptions = {
+    headers: { accept: 'application/json' },
+  };
+
+router.get('/', authenticate, (req, res) => {
+    let { user_id } = req.body;
   if (req.decodedToken.roles.includes("users")) {
-    Users.find()
+    Users.findById(user_id)
       .then(users => {
         res.json(users);
       })
