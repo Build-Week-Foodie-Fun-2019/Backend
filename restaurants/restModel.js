@@ -9,9 +9,9 @@ module.exports = {
     // remove,
   };
 
-  function getById(id) {
+  function getById(restaurant_id) {
     return db('restaurants')
-      .where({ id })
+      .where({ restaurant_id })
       .first();
   }
 
