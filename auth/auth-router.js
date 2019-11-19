@@ -54,6 +54,7 @@ function generateToken(user) {
     process.env.NODE_ENV === "development"
       ? process.env.SECRET
       : process.env.SECRET,
+    // 'THIS IS THE SECRET',
     options
   );
 
