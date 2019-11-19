@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
               if (user && bcrypt.compareSync(password, user.password)) {
                   const token = generateToken(user);
                   res.status(200).json({
-                      message: `Welcome ${user.username}!`,
+                      message: `${user.username} Welcome to Foodie Fun!`,
                       token: token,
                   });
               } else {
@@ -47,6 +47,27 @@ router.post('/login', (req, res) => {
   
   });
 
+
+
+  function generateToken(user) {
+    const payload = {
+        subject: user.id,
+        username: user.username,
+      //   roles: ['student']
+    }
+    const options = {
+        expiresIn: '1d',
+    }
+  
+    const result = jwt.sign(
+        payload,
+        // process.env.NODE_ENV === 'development' ? 'devsecret' : process.env.SECRET,
+        'THIS IS THE SECRET',
+        options,
+    )
+  
+    return result;
+  }
 
 
   module.exports = router;
