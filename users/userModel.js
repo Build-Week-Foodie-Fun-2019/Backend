@@ -25,6 +25,6 @@ function findBy(filter) {
 }
 
   function getAllUsers() {
-    return db('users').select('user_id', 'user_username', 'user_password', 'user_email', 'user_location');
+    return db('users').select('user_id', 'user_username', 'user_email', 'user_location');
   }
   
