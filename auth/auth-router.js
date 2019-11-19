@@ -26,15 +26,15 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     // implement login
   
-    let { username, password } = req.body;
+    let { user_username, user_password } = req.body;
   
-      Users.findBy({ username })
+      Users.findBy({ user_username })
           .first()
           .then(user => {
-              if (user && bcrypt.compareSync(password, user.password)) {
+              if (user && bcrypt.compareSync(user_password, user.user_password)) {
                   const token = generateToken(user);
                   res.status(200).json({
-                      message: `${user.username} Welcome to Foodie Fun!`,
+                      message: `${user.user_username} Welcome to Foodie Fun!`,
                       token: token,
                   });
               } else {
@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
   function generateToken(user) {
     const payload = {
         subject: user.id,
-        username: user.username,
+        user_username: user.user_username,
       //   roles: ['student']
     }
     const options = {
