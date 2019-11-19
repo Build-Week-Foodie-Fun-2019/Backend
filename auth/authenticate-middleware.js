@@ -6,7 +6,6 @@ module.exports = (req, res, next) => {
   if (token) {
     jwt.verify(
       token,
-      'ThisIsFoodieFunApp',
       process.env.NODE_ENV === "development"
         ? process.env.SECRET
         : process.env.SECRET,
