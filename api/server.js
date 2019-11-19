@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const authenticate = require("../auth/authenticate-middleware");
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../users/userRouter");
+const restaurantRouter = require("../restaurants/restRouter");
 
 const server = express();
 
@@ -18,6 +19,7 @@ server.get("/", logger, (req, res) => {
 
 server.use("/api/auth", logger, authRouter);
 server.use("/api/users", logger, authenticate, userRouter);
+server.use("/api/restaurants", logger, restaurantRouter);
 
 function logger(req, res, next) {
   console.log(
