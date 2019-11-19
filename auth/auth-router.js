@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
     const payload = {
         subject: user.id,
         user_username: user.user_username,
-      //   roles: ['student']
+        roles: ['users']
     }
     const options = {
         expiresIn: '1d',
