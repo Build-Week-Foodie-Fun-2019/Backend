@@ -16,7 +16,7 @@ exports.up = function(knex) {
         .string("restaurant_name", 128)
         .unique()
         .notNullable();
-      table.varchar("restaurant_cuisine");
+      table.varchar("restaurant_cuisine").notNullable();
       table.varchar("restaurant_hours", 128);
       table.varchar("restaurant_location", 240);
       table.integer("restaurant_rating", 128);
@@ -25,14 +25,6 @@ exports.up = function(knex) {
     .createTable("menu_items", table => {
       table.increments("menu_item_id");
       table.string("menu_item_name", 128).notNullable();
-      table
-        .varchar("menu_item_cuisine")
-        .unsigned()
-        .notNullable()
-        .references("restaurant_cuisine")
-        .inTable("restaurants")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
       table
         .string("menu_item_restaurant")
         .unsigned()
