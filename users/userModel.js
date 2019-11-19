@@ -18,7 +18,7 @@ async function add(user) {
       "user_location"
     ]);
 
-  return findById(user_id);
+  return findById(user.user_id);
 }
 
 function findById(user_id) {
