@@ -1,16 +1,24 @@
-const router = require('express').Router();
+const db = require("../database/db-config");
 
-const Restaurants = require('./restRouter');
-const authenticate = require('../auth/authenticate-middleware');
+module.exports = {
+    // get,
+    getById,
+    // getUserPosts,
+    insert,
+    // update,
+    // remove,
+  };
 
+  function getById(id) {
+    return db('restaurants')
+      .where({ id })
+      .first();
+  }
 
-Restaurants.post('/restaurants', authenticate, (req, res) => {
-    const friend = { id: getNextId(), ...req.body };
-
-    friends = [...friends, friend];
-
-    res.send(friends);
-});
-
-
-module.exports = router;
+  function insert(restaurant) {
+    return db('restaurants')
+      .insert(restaurant)
+      .then(ids => {
+        return getById(ids[0]);
+      });
+  }

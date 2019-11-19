@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const dB = require('./restRouter');
+const dB = require('./restModel');
 
 // Restaurants.post('/restaurants', (req, res) => {
 //     let { restaurants_name, restaurants_cusine, restaurant_hours, restaurant_location, restaurant_rating, restaurant_image } = req.body;
