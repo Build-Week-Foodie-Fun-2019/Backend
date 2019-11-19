@@ -4,6 +4,8 @@ const helmet = require('helmet');
 
 const authenticate = require('../auth/authenticate-middleware')
 const authRouter = require('../auth/auth-router')
+const userRouter = require('../users/userRouter')
+
 
 const server = express();
 
@@ -16,6 +18,7 @@ server.get("/", (req, res) => {
 })
 
 server.use('/api/auth', authRouter);
+server.use('/api/users', userRouter)
 // const foodies = [
 //   { id: 1, name: 'Ifiok' },
 //   { id: 2, name: 'Kayla' },
