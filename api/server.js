@@ -3,31 +3,35 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const server = express();
+
 server.use(helmet());
-
-const foodies = [
-    {id:1, name:'Ifiok'},
-    {id:2, name:'Kayla'},
-    {id:3, name:'Blake'},
-];
-
-server.use(express.json());
 server.use(cors());
+server.use(express.json());
 
 
-server.get('/', logger,(req, res) => {
-    res.send("<h1>Welcome to Foodie Fun!</h1>")
-   })
-   server.get('/api/foodies', logger,(req, res, next) => {
-     res.json(foodies);
-   });
+// const foodies = [
+//   { id: 1, name: 'Ifiok' },
+//   { id: 2, name: 'Kayla' },
+//   { id: 3, name: 'Blake' },
+// ];
+
+// server.use(express.json());
+// server.use(cors());
 
 
-   function logger(req, res, next) {
-    console.log(
-      `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.host}`
-    );
-  
-    next();
-  }
-   module.exports = server;
+// server.get('/', logger, (req, res) => {
+//   res.send("<h1>Welcome to Foodie Fun!</h1>")
+// })
+// server.get('/api/foodies', logger, (req, res, next) => {
+//   res.json(foodies);
+// });
+
+
+// function logger(req, res, next) {
+//   console.log(
+//     `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.host}`
+//   );
+
+//   next();
+// }
+module.exports = server;
