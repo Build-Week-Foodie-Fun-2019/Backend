@@ -8,9 +8,9 @@ const requestOptions = {
   };
 
 router.get('/', authenticate, (req, res) => {
-    let { user_id } = req.body;
+    // let { user_id } = req.body;
   if (req.decodedToken.roles.includes("users")) {
-    Users.findById(user_id)
+    Users.getAllUsers()
       .then(users => {
         res.json(users);
       })
