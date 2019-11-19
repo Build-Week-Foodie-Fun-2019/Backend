@@ -11,7 +11,11 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
+server.get("/", (req, res) => {
+  res.send("It's Alive!!!");
+})
 
+server.use('/api/auth', authRouter);
 // const foodies = [
 //   { id: 1, name: 'Ifiok' },
 //   { id: 2, name: 'Kayla' },
