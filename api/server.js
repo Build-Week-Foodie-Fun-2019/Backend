@@ -15,11 +15,19 @@ server.use(express.json());
 server.use(cors());
 
 
-server.get('/', (req, res) => {
+server.get('/', logger,(req, res) => {
     res.send("<h1>Welcome to Foodie Fun!</h1>")
    })
-   server.get('/api/foodies', (req, res, next) => {
+   server.get('/api/foodies', logger,(req, res, next) => {
      res.json(foodies);
    });
 
+
+   function logger(req, res, next) {
+    console.log(
+      `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.host}`
+    );
+  
+    next();
+  }
    module.exports = server;
