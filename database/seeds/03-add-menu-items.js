@@ -1,9 +1,5 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex("menu_items")
-    .del()
-    .then(function() {
-      // Inserts seed entries
+
       return knex("menu_items").insert([
         {
           menu_item_id: 1,
@@ -33,5 +29,5 @@ exports.seed = function(knex) {
           menu_item_photo: ""
         }
       ]);
-    });
+   
 };
