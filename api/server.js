@@ -7,6 +7,7 @@ const authRouter = require("../auth/auth-router");
 const userRouter = require("../users/userRouter");
 const restaurantRouter = require("../restaurants/restRouter");
 const reviewRouter = require("../reviews/reviewRouter");
+const menuItemRouter = require("../menuItems/menuItemRouter");
 
 const server = express();
 
@@ -22,6 +23,7 @@ server.use("/api/auth", logger, authRouter);
 server.use("/api/users", logger, authenticate, userRouter);
 server.use("/api/restaurants", logger, restaurantRouter);
 server.use("/api/reviews", logger, reviewRouter);
+server.use("/api/menuItems", logger, menuItemRouter);
 
 
 function logger(req, res, next) {
