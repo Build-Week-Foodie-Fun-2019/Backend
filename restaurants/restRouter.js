@@ -14,8 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', validateRestaurantId, (req, res) => {
-
-  res.status(200).json({ restaurantById: req.restaurants })
+  res.status(200).json(req.restaurants)
 });
 
 router.post('/', validateRestaurant, (req, res) => {
