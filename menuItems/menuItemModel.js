@@ -11,15 +11,15 @@ function getAll() {
     return db('menu_items');
 }
 
-function getById(restaurant_id) {
-    return db('restaurants')
-        .where({ restaurant_id })
+function getById(menu_item_id) {
+    return db('menu_items')
+        .where({ menu_item_id })
         .first();
 }
 
-function insert(restaurant) {
-    return db('restaurants')
-        .insert(restaurant)
+function insert(menu_item) {
+    return db('menu_items')
+        .insert(menu_item)
         .then(ids => {
             return getById(ids[0]);
         });
