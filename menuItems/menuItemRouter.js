@@ -15,5 +15,11 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/:id', validateUserMenu_itemId, (req, res) => {
+
+    res.status(200).json({ reviewByUserMenu_itemId: req.menu_item })
+  });
+
+
 
 module.exports = router
