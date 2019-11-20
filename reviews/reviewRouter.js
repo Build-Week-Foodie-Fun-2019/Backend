@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', validateUserRestaurantId, (req, res) => {
 
-    res.status(200).json({ reviewById: req.review })
+    res.status(200).json({ reviewByUserRestaurantId: req.reviews })
   });
 
 
