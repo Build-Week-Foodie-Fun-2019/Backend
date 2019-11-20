@@ -7,18 +7,18 @@ module.exports = {
 };
 
 function getAll() {
-    return db('menu_items');
+    return db('user_restaurants');
 }
 
-function getById(menu_item_id) {
-    return db('menu_items')
-        .where({ menu_item_id })
+function getById(user_restaurant_id) {
+    return db('user_restaurants')
+        .where({ user_restaurant_id })
         .first();
 }
 
-function insert(menu_items) {
-    return db('menu_items')
-        .insert(menu_items)
+function insert(user_restaurants) {
+    return db('user_restaurants')
+        .insert(user_restaurants)
         .then(ids => {
             return getById(ids[0]);
         });
