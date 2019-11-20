@@ -10,8 +10,9 @@ router.post("/register", (req, res) => {
   user.user_password = hash;
 
   Users.add(user)
-    .then(saved => {
-      res.status(201).json(saved);
+    .then(newUser => {
+      const token = generateToken(user);
+      res.status(201).json({newUser,token});
     })
     .catch(error => {
       res.status(500).json("error" + error);
@@ -54,7 +55,6 @@ function generateToken(user) {
     process.env.NODE_ENV === "development"
       ? process.env.SECRET
       : process.env.SECRET,
-    // 'THIS IS THE SECRET',
     options
   );
 

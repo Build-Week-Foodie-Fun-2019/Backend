@@ -18,11 +18,18 @@ async function add(user) {
       "user_location"
     ]);
 
-  return user_id;
+    const newUser = await findById(user_id)
+    return newUser;
 }
 
 function findById(user_id) {
   return db("users")
+  .select(
+    "user_id",
+    "user_username",
+    "user_email",
+    "user_location"
+  )
     .where({ user_id })
     .first();
 }
