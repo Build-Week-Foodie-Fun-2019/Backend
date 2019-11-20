@@ -10,9 +10,9 @@ function getAll() {
     return db('menu_items');
 }
 
-function getById(menu_items_id) {
+function getById(menu_item_id) {
     return db('menu_items')
-        .where({ menu_items_id })
+        .where({ menu_item_id })
         .first();
 }
 

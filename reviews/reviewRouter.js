@@ -25,20 +25,20 @@ router.post('/', validateReview, (req, res) => {
 function validateReview(req, res, next) {
 
     if (Object.keys(req.body).length) {
-        req.restaurant = req.body;
+        req.review = req.body;
         dB.insert(req.body)
             .then(() => {
                 next()
             })
             .catch((err) => {
 
-                res.status(400).json({ errorMessage: "Please provide restaurant_name for the restaurant." + err })
+                res.status(400).json({ errorMessage: "Please provide restaurant_name for the review." + err })
 
             })
     }
     else {
         dB.insert(req.body).catch((err) => {
-            res.status(500).json({ error: "There was an error while saving the restaurant to the database" + err })
+            res.status(500).json({ error: "There was an error while saving the review to the database" + err })
         })
     }
 }
