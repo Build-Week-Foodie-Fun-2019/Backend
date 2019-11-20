@@ -14,6 +14,11 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id', validateUserRestaurantId, (req, res) => {
+
+    res.status(200).json({ restaurantById: req.restaurants })
+  });
+
 
 router.post('/', validateReview, (req, res) => {
 
