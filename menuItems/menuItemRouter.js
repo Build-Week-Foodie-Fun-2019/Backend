@@ -28,6 +28,30 @@ router.get('/:id', validateUserMenu_itemId, (req, res) => {
     res.status(201).json({ postedMenuItem: menuItem, url: url, operation: "POST" })
 });
 
+
+function validateMenuItem(req, res, next) {
+
+    if (Object.keys(req.body).length) {
+        req.menuItem = req.body;
+        dB.insert(req.body)
+            .then(() => {
+                next()
+            })
+            .catch((err) => {
+
+                res.status(400).json({ errorMessage: "Please provide menu_item_name for the menuItem." + err })
+
+            })
+    }
+    else {
+        dB.insert(req.body).catch((err) => {
+            res.status(500).json({ error: "There was an error while saving the menuItem to the database" + err })
+        })
+    }
+}
+
+
+
   function validateUserMenu_itemId(req, res, next) {
 
     const { id } = req.params;
