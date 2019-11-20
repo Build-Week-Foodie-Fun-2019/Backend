@@ -21,6 +21,12 @@ router.get('/:id', validateUserMenu_itemId, (req, res) => {
   });
 
 
+  router.post('/', validateMenuItem, (req, res) => {
+
+    const menuItem = req.body;
+    const { url } = req;
+    res.status(201).json({ postedMenuItem: menuItem, url: url, operation: "POST" })
+});
 
   function validateUserMenu_itemId(req, res, next) {
 
