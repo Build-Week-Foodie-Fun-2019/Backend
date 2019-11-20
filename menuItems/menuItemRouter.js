@@ -13,3 +13,7 @@ router.get('/', (req, res) => {
             res.status(500).json({ error: "The menu_items information could not be retrieved." })
         })
 });
+
+
+
+module.exports = router

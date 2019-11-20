@@ -6,11 +6,11 @@ const dB = require('./reviewModel');
 router.get('/', (req, res) => {
 
     dB.getAll()
-        .then((menu_items) => {
-            res.status(200).json(menu_items)
+        .then((review) => {
+            res.status(200).json(review)
         })
         .catch(() => {
-            res.status(500).json({ error: "The menu_items information could not be retrieved." })
+            res.status(500).json({ error: "The review information could not be retrieved." })
         })
 });
 
