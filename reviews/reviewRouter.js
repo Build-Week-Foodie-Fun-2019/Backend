@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', validateUserRestaurantId, (req, res) => {
 
-    res.status(200).json({ restaurantById: req.restaurants })
+    res.status(200).json({ reviewById: req.review })
   });
 
 
@@ -47,5 +47,26 @@ function validateReview(req, res, next) {
         })
     }
 }
+
+
+function validateUserRestaurantId(req, res, next) {
+
+    const { id } = req.params;
+    dB.getById(id)
+      .then((reviews) => {
+        if (reviews) {
+          req.reviews = reviews;
+          next();
+        }
+        else {
+          res.status(404).json({ message: "The review with the specified ID does not exist." })
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "The review information could not be retrieved." + err })
+      })
+  }
+
+
 
 module.exports = router;
