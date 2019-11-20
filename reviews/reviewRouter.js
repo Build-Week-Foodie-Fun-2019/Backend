@@ -15,6 +15,12 @@ router.get('/', (req, res) => {
 });
 
 
+router.post('/', validateReview, (req, res) => {
+  
+    const review = req.body;
+    const { url } = req;
+    res.status(201).json({ postedReview: review, url: url, operation: "POST" })
+  });
 
 
 module.exports = router;
