@@ -8,7 +8,8 @@ module.exports = {
   getAllUsers,
   update,
   remove,
-  getAllRestaurantsByUser
+  getAllRestaurantsByUser,
+  getAllReviewsByUser
 };
 
 async function add(user) {
