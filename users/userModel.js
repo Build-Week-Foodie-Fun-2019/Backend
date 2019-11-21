@@ -59,3 +59,47 @@ function getAllRestaurantsByUser(user_restaurant_user_id ) {
     .join("user_restaurants")
     .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id )
 }
+
+
+//////by review
+// select restaurant_name, user_restaurant_review
+// from restaurants
+// join user_restaurants on restaurants.restaurant_id = user_restaurants.user_restaurant_restaurant_id
+
+// where user_restaurant_user_id = 4
+
+
+
+//////by cuisine
+
+// select restaurant_name, restaurant_cuisine 
+// from restaurants
+// join user_restaurants on restaurants.restaurant_id = user_restaurants.user_restaurant_restaurant_id
+// where user_restaurant_user_id = 8 and restaurant_cuisine = "oug fb qfbhwfwv"
+
+
+
+
+////by price
+
+// select 
+// restaurant_name,
+// menu_item_price,
+// user_restaurant_user_id
+// from menu_items
+// join restaurants on menu_items.menu_item_restaurant = restaurants.restaurant_name
+// join user_restaurants 
+// where user_restaurant_user_id = 2  and menu_item_price = 1
+
+
+
+////by rating
+
+// select 
+// restaurant_name,
+// restaurant_rating,
+// user_restaurant_user_id
+// from menu_items
+// join restaurants on menu_items.menu_item_restaurant = restaurants.restaurant_name
+// join user_restaurants 
+// where user_restaurant_user_id = 2  and restaurant_rating = 4
