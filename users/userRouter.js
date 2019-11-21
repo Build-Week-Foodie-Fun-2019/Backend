@@ -112,7 +112,7 @@ router.get("/:user_restaurant_user_id/:restaurant_rating/userRating", (req, res)
     const { user_restaurant_user_id, restaurant_rating} = req.params;
     const { url } = req;  
 
-    Users.getAllPricesByUser(user_restaurant_user_id, restaurant_rating)
+    Users.getAllRatingsByUser(user_restaurant_user_id, restaurant_rating)
         .then((userRestaurant) => {
 
             if (userRestaurant.length === 0) {

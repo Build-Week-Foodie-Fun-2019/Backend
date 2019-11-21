@@ -123,6 +123,7 @@ function getAllRatingsByUser(user_restaurant_user_id, restaurant_rating) {
   return db.select("restaurant_name", "restaurant_rating", "user_restaurant_user_id")
     .from("menu_items")
     .join("restaurants", "menu_items.menu_item_restaurant", "=", "restaurants.restaurant_name")
+    .join("user_restaurants") 
     .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id)
     .andWhere("restaurant_rating", "=", restaurant_rating)
 }
