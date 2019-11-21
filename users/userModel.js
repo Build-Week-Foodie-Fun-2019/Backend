@@ -4,42 +4,27 @@ module.exports = {
   add,
   findBy,
   findById,
-  getAllUsers
+  getAllUsers,
+  update,
+  remove
 };
 
 async function add(user) {
-  const [user_id] = await db("users")
-    .insert(user, "user_id")
-    // .returning([
-    //   "user_id",
-    //   "user_username",
-    //   "user_password",
-    //   "user_email",
-    //   "user_location"
-    // ]);
-    console.log(user_id)
-
-    const newUser = await findById(user_id)
-    return newUser;
+  const [user_id] = await db("users").insert(user, "user_id");
+  const newUser = await findById(user_id);
+  return newUser;
 }
 
 function findById(user_id) {
   return db("users")
-  .select(
-    "user_id",
-    "user_username",
-    "user_email",
-    "user_location"
-  )
+    .select("user_id", "user_username", "user_email", "user_location")
     .where({ user_id })
     .first();
 }
 
-
 function findBy(filter) {
   return db("users").where(filter);
 }
-
 
 function getAllUsers() {
   return db("users").select(
@@ -50,3 +35,14 @@ function getAllUsers() {
   );
 }
 
+function update(user_id, changes) {
+  return db("users")
+    .where({ user_id })
+    .update(changes);
+}
+
+function remove(user_id) {
+  return db("users")
+    .where("user_id", user_id)
+    .del();
+}
