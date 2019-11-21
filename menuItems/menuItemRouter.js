@@ -7,10 +7,10 @@ router.get("/", (req, res) => {
     .then(menu_items => {
       res.status(200).json(menu_items);
     })
-    .catch(() => {
+    .catch((error) => {
       res
         .status(500)
-        .json({ error: "The menu_items information could not be retrieved." });
+        .json({ errorMessage: "The menu_items information could not be retrieved."+ error });
     });
 });
 
