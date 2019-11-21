@@ -130,6 +130,14 @@ function getAllRatingsByUser(user_restaurant_user_id, restaurant_rating) {
 
 
 
+
+
+function getAllRestaurantNameByUser(user_restaurant_user_id, restaurant_name) {
+  return db.select("restaurant_name", "user_restaurant_user_id")
+    .from("menu_items")
+    .join("restaurants", "menu_items.menu_item_restaurant", "=", "restaurants.restaurant_name")
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id && "restaurant_name", "=", restaurant_name)
+}
 /////by restaurant name
 
 // select 
