@@ -92,6 +92,14 @@ function getAllCuisineByUser(user_restaurant_user_id, restaurant_cuisine) {
 
 
 
+
+
+function getAllPricesByUser(user_restaurant_user_id, restaurant_cuisine) {
+  return db.select("restaurant_name", "menu_item_price", "user_restaurant_user_id")
+    .from("menu_items")
+    .join("restaurants", "menu_items.menu_item_restaurant", "=", "restaurants.restaurant_name")
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id && "restaurant_cuisine", "=", restaurant_cuisine)
+}
 ////by price
 
 // select 
