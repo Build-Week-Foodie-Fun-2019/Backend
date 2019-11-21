@@ -18,16 +18,16 @@ function getById(restaurant_id) {
 
 function insert(restaurant) {
   return db("restaurants")
-    .insert(restaurant)
-    .returning([
-      "restaurant_id",
-      "restaurant_name",
-      "restaurant_cuisine",
-      "restaurant_location",
-      "restaurant_hours",
-      "restaurant_rating",
-      "restaurant_image"
-    ])
+    .insert(restaurant, "restaurant_id")
+    // .returning([
+    //   "restaurant_id",
+    //   "restaurant_name",
+    //   "restaurant_cuisine",
+    //   "restaurant_location",
+    //   "restaurant_hours",
+    //   "restaurant_rating",
+    //   "restaurant_image"
+    // ])
     .then(ids => {
       return getById(ids[0]);
     });

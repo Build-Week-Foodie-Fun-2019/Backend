@@ -18,9 +18,9 @@ function getById(menu_item_id) {
 }
 
 function insert(menu_item) {
-  return db('menu_items')
-    .insert(menu_item)
-    .then(ids => {
-      return getById(ids[0]);
-    });
+    return db('menu_items')
+        .insert(menu_item, "menu_item_id")
+        .then(ids => {
+            return getById(ids[0]);
+        });
 }

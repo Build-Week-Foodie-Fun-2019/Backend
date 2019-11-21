@@ -1,9 +1,5 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex("restaurants")
-    .del()
-    .then(function() {
-      // Inserts seed entries
+
       return knex("restaurants").insert([
         {
           restaurant_id: 1,
@@ -33,5 +29,5 @@ exports.seed = function(knex) {
           restaurant_image: ""
         }
       ]);
-    });
+   
 };
