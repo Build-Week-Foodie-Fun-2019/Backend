@@ -10,7 +10,8 @@ module.exports = {
   remove,
   getAllRestaurantsByUser,
   getAllReviewsByUser,
-  getAllCuisineByUser
+  getAllCuisineByUser,
+  getAllPricesByUser
 };
 
 async function add(user) {
@@ -100,7 +101,7 @@ function getAllPricesByUser(user_restaurant_user_id, menu_item_price) {
   return db.select("restaurant_name", "menu_item_price", "user_restaurant_user_id")
     .from("menu_items")
     .join("restaurants", "menu_items.menu_item_restaurant", "=", "restaurants.restaurant_name")
-    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id && "menu_item_price", "=", menu_item_price)
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id) .andWhere(".menu_item.menu_item_price", "=", menu_item_price)
 }
 ////by price
 
@@ -132,9 +133,6 @@ function getAllRatingsByUser(user_restaurant_user_id, restaurant_rating) {
 // join restaurants on menu_items.menu_item_restaurant = restaurants.restaurant_name
 // join user_restaurants 
 // where user_restaurant_user_id = 2  and restaurant_rating = 4
-
-
-
 
 
 function getAllRestaurantNameByUser(user_restaurant_user_id, restaurant_name) {
