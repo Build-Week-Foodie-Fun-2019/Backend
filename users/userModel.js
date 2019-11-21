@@ -53,9 +53,9 @@ function getAllUsers() {
   );
 }
 
-function getAllRestaurantsByUser(id) {
+function getAllRestaurantsByUser(user_restaurant_user_id ) {
   return db.select("restaurant_name")
     .from("restaurants")
-    .join("users_restaurants")
-    .where("users_restaurants.user_restaurant_user_id", "=", id)
+    .join("user_restaurants")
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id )
 }
