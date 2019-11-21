@@ -101,7 +101,8 @@ function getAllPricesByUser(user_restaurant_user_id, menu_item_price) {
   return db.select("restaurant_name", "menu_item_price", "user_restaurant_user_id")
     .from("menu_items")
     .join("restaurants", "menu_items.menu_item_restaurant", "=", "restaurants.restaurant_name")
-    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id) .andWhere(".menu_item.menu_item_price", "=", menu_item_price)
+    .join ("user_restaurants") 
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id) .andWhere("menu_items.menu_item_price", "=", menu_item_price)
 }
 ////by price
 

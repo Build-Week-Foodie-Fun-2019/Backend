@@ -90,6 +90,23 @@ router.get("/:user_restaurant_user_id/:restaurant_cuisine/userCuisine", (req, re
         })
 })
 
+router.get("/:user_restaurant_user_id/:menu_item_price/userPrice", (req, res) => {
+    const { user_restaurant_user_id, menu_item_price} = req.params;
+    const { url } = req;  
+
+    Users.getAllPricesByUser(user_restaurant_user_id, menu_item_price)
+        .then((userRestaurant) => {
+
+            if (userRestaurant.length === 0) {
+                res.status(404).json({ message: "The userRestaurant with the specified ID does not exist." })
+            }
+            res.status(200).json({ userRestaurantInfo: userRestaurant, url: url, operation: "GET" })
+        })
+        .catch((err) => {
+            res.status(500).json({ error: "The userRestaurant information could not be retrieved." + err })
+        })
+})
+
 
 
 module.exports = router;
