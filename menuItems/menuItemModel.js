@@ -5,6 +5,8 @@ module.exports = {
   getAll,
   getById,
   insert,
+  update,
+  remove
 };
 
 function getAll() {
@@ -23,4 +25,16 @@ function insert(menu_item) {
         .then(ids => {
             return getById(ids[0]);
         });
+}
+
+function update(menu_item_id, changes) {
+  return db('menu_items')
+    .where({ menu_item_id })
+    .update(changes);
+}
+
+function remove(menu_item_id) {
+  return db('menu_items')
+    .where('menu_item_id', menu_item_id)
+    .del();
 }
