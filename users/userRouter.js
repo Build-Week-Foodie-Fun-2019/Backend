@@ -40,11 +40,11 @@ router.get('/:id', authenticate, (req, res) => {
    
 });
 
-router.get("/:id/userRestaurant", (req, res) => {
-    const { id } = req.params;
+router.get("/:user_restaurant_user_id/userRestaurant", (req, res) => {
+    const { user_restaurant_user_id  } = req.params;
     const { url } = req;
 
-    Users.getAllRestaurantsByUser(id)
+    Users.getAllRestaurantsByUser(user_restaurant_user_id)
         .then((userRestaurant) => {
 
             if (userRestaurant.length === 0) {
