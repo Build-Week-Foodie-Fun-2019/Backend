@@ -1,9 +1,5 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex("user_restaurants")
-    .truncate()
-    .then(function() {
-      // Inserts seed entries
+
       return knex("user_restaurants").insert([
         {
           user_restaurant_id: 1,
@@ -27,5 +23,5 @@ exports.seed = function(knex) {
             "Okay coffee and better than average breakfast sandwiches."
         },
       ]);
-    });
+   
 };
