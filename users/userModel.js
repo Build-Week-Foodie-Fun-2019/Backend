@@ -9,7 +9,8 @@ module.exports = {
   update,
   remove,
   getAllRestaurantsByUser,
-  getAllReviewsByUser
+  getAllReviewsByUser,
+  getAllCuisineByUser
 };
 
 async function add(user) {
@@ -82,7 +83,7 @@ function getAllCuisineByUser(user_restaurant_user_id, restaurant_cuisine) {
   return db.select("restaurant_name", "restaurant_cuisine")
     .from("restaurants")
     .join("user_restaurants", "restaurants.restaurant_id", "=", "user_restaurants.user_restaurant_restaurant_id")
-    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id && "restaurant_cuisine", "=", restaurant_cuisine)
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id && "restaurants.restaurant_cuisine", "=", restaurant_cuisine)
 }
 //////by cuisine
 
