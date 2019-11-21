@@ -1,3 +1,4 @@
+
 const db = require("../database/db-config");
 
 module.exports = {
@@ -6,7 +7,8 @@ module.exports = {
   findById,
   getAllUsers,
   update,
-  remove
+  remove,
+  getAllRestaurantsByUser
 };
 
 async function add(user) {
@@ -17,7 +19,12 @@ async function add(user) {
 
 function findById(user_id) {
   return db("users")
-    .select("user_id", "user_username", "user_email", "user_location")
+    .select(
+      "user_id",
+      "user_username",
+      "user_email",
+      "user_location"
+    )
     .where({ user_id })
     .first();
 }
@@ -45,4 +52,11 @@ function remove(user_id) {
   return db("users")
     .where("user_id", user_id)
     .del();
+
+}
+function getAllRestaurantsByUser(user_restaurant_user_id ) {
+  return db.select("restaurant_name")
+    .from("restaurants")
+    .join("user_restaurants")
+    .where("user_restaurants.user_restaurant_user_id", "=", user_restaurant_user_id )
 }
