@@ -44,7 +44,7 @@ router.delete("/:id", validateRestaurantId, (req, res) => {
     });
 });
 
-router.put("/:id", validateRestaurantId, (req, res) => {
+router.put("/:id", validateRestaurantId,validateRestaurant, (req, res) => {
   dB.update(req.restaurants.restaurant_id, req.body)
     .then(() => {
       res.status(200).json({ ...req.restaurants, ...req.body });
