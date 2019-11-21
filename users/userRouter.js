@@ -40,6 +40,22 @@ router.get('/:id', authenticate, (req, res) => {
    
 });
 
+router.get("/:id/userRestaurant", (req, res) => {
+    const { id } = req.params;
+    const { url } = req;
+
+    Users.getAllRestaurantsByUser(id)
+        .then((userRestaurant) => {
+
+            if (userRestaurant.length === 0) {
+                res.status(404).json({ message: "The userRestaurant with the specified ID does not exist." })
+            }
+            res.status(200).json({ userRestaurantInfo: userRestaurant, url: url, operation: "GET" })
+        })
+        .catch((err) => {
+            res.status(500).json({ error: "The userRestaurant information could not be retrieved." + err })
+        })
+})
 
 
 module.exports = router;
