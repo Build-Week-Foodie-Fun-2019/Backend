@@ -35,7 +35,7 @@ router.get('/:id', authenticate, (req, res) => {
    
 });
 
-router.get("/:user_restaurant_user_id/userRestaurant", (req, res) => {
+router.get("/:user_restaurant_user_id/userRestaurants", (req, res) => {
     const { user_restaurant_user_id  } = req.params;
     const { url } = req;
 
@@ -71,7 +71,7 @@ router.get("/:user_restaurant_user_id/userReviews", (req, res) => {
 })
 
 
-router.get("/:user_restaurant_user_id/:restaurant_cuisine/userCuisine", (req, res) => {
+router.get("/:user_restaurant_user_id/:restaurant_cuisine/userCuisines", (req, res) => {
     const { user_restaurant_user_id, restaurant_cuisine} = req.params;
     const { url } = req;
     // const restaurant_cuisine ="Bistro"
@@ -108,7 +108,7 @@ router.get("/:user_restaurant_user_id/:menu_item_price/userPrice", (req, res) =>
 })
 
 
-router.get("/:user_restaurant_user_id/:restaurant_rating/userRating", (req, res) => {
+router.get("/:user_restaurant_user_id/:restaurant_rating/userRatings", (req, res) => {
     const { user_restaurant_user_id, restaurant_rating} = req.params;
     const { url } = req;  
 
@@ -126,7 +126,7 @@ router.get("/:user_restaurant_user_id/:restaurant_rating/userRating", (req, res)
 })
 
 
-router.get("/:user_restaurant_user_id/:restaurant_name/userRestaurantName", (req, res) => {
+router.get("/:user_restaurant_user_id/:restaurant_name/userRestaurantNames", (req, res) => {
     const { user_restaurant_user_id, restaurant_name} = req.params;
     const { url } = req;  
 
