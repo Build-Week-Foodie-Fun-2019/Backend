@@ -1,68 +1,93 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const dB = require('./restModel');
+const dB = require("./restModel");
 
-router.get('/', (req, res) => {
-
+router.get("/", (req, res) => {
   dB.getAll()
-    .then((restaurants) => {
-      res.status(200).json(restaurants)
+    .then(restaurants => {
+      res.status(200).json(restaurants);
     })
     .catch(() => {
-      res.status(500).json({ error: "The restaurants information could not be retrieved." })
+      res
+        .status(500)
+        .json({ error: "The restaurants information could not be retrieved." });
+    });
+});
+
+router.get("/:id", validateRestaurantId, (req, res) => {
+  res.status(200).json(req.restaurants);
+});
+
+router.post("/", validateRestaurant, (req, res) => {
+  dB.insert(req.body)
+    .then(restaurant => {
+      res.status(201).json(restaurant);
     })
+    .catch(error => {
+      res.status(500).json({ errorMessage: error });
+    });
 });
 
-router.get('/:id', validateRestaurantId, (req, res) => {
-  res.status(200).json(req.restaurants)
+router.delete("/:id", validateRestaurantId, (req, res) => {
+  dB.remove(req.restaurants.restaurant_id)
+    .then(() => {
+      res.status(200).json({
+        success: true,
+        message: "Successfully Deleted",
+        deleted: req.restaurants
+      });
+    })
+    .catch(error => {
+      res.status(500).json({
+        errorMessage: "Could not Delete, Server error: " + error
+      });
+    });
 });
 
-router.post('/', validateRestaurant, (req, res) => {
-  // let { restaurants_name, restaurants_cusine, restaurant_hours, restaurant_location, restaurant_rating, restaurant_image } = req.body;
-
-  const restaurant = req.body;
-  const { url } = req;
-  res.status(201).json({ postedRestaurant: restaurant, url: url, operation: "POST" })
+router.put("/:id", validateRestaurantId, (req, res) => {
+  dB.update(req.restaurants.restaurant_id, req.body)
+    .then(() => {
+      res.status(200).json({ ...req.restaurants, ...req.body });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Could not Update Restaurant: " + error
+      });
+    });
 });
 
-
+//middleware
 function validateRestaurantId(req, res, next) {
-
   const { id } = req.params;
   dB.getById(id)
-    .then((restaurants) => {
+    .then(restaurants => {
       if (restaurants) {
         req.restaurants = restaurants;
         next();
-      }
-      else {
-        res.status(404).json({ message: "The restaurant with the specified ID does not exist." })
+      } else {
+        res.status(404).json({
+          message: "The restaurant with the specified ID does not exist."
+        });
       }
     })
-    .catch((err) => {
-      res.status(500).json({ error: "The restaurant information could not be retrieved." + err })
-    })
+    .catch(err => {
+      res.status(500).json({
+        error: "The restaurant information could not be retrieved." + err
+      });
+    });
 }
 
-
 function validateRestaurant(req, res, next) {
-
   if (Object.keys(req.body).length) {
-    req.restaurant = req.body;
-    dB.insert(req.body)
-      .then(() => {
-        next()
-      })
-      .catch((err) => {
-
-        res.status(400).json({ errorMessage: "Please provide restaurant_name for the restaurant." + err })
-
-      })
-  }
-  else {
-    dB.insert(req.body).catch((err) => {
-      res.status(500).json({ error: "There was an error while saving the restaurant to the database" + err })
-    })
+    if (req.body.restaurant_name && req.body.restaurant_cuisine) {
+      next();
+    } else {
+      res
+        .status(400)
+        .json({ message: "fill in the fields that are required!" });
+    }
+  } else {
+    res.status(400).json({ message: "missing user data" });
   }
 }
 
