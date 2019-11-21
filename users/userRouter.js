@@ -3,12 +3,7 @@ const router = require('express').Router();
 const Users = require('./userModel');
 const authenticate = require('../auth/authenticate-middleware');
 
-// const requestOptions = {
-//     headers: { accept: 'application/json' },
-// };
-
 router.get('/', authenticate, (req, res) => {
-    // let { user_id } = req.body;
     if (req.decodedToken.roles.includes("users")) {
         Users.getAllUsers()
             .then(users => {
