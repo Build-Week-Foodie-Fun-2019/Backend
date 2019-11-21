@@ -6,7 +6,7 @@ module.exports = {
   findBy,
   findById,
   getAllUsers,
-  getAllRestaurants
+  getAllRestaurantsByUser
 
 };
 
@@ -53,9 +53,9 @@ function getAllUsers() {
   );
 }
 
-function getAllRestaurants(id) {
+function getAllRestaurantsByUser(id) {
   return db.select("restaurant_name")
     .from("restaurants")
-    .join("users")
-    .where("users.users_id", "=", id)
+    .join("users_restaurants")
+    .where("users_restaurants.user_restaurant_user_id", "=", id)
 }
