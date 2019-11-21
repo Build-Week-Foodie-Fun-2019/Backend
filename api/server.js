@@ -21,10 +21,9 @@ server.get("/", logger, (req, res) => {
 
 server.use("/api/auth", logger, authRouter);
 server.use("/api/users", logger, authenticate, userRouter);
-server.use("/api/restaurants", logger, restaurantRouter);
-server.use("/api/reviews", logger, reviewRouter);
-server.use("/api/menuItems", logger, menuItemRouter);
-
+server.use("/api/restaurants", logger, authenticate, restaurantRouter);
+server.use("/api/reviews", logger, authenticate, reviewRouter);
+server.use("/api/menuItems", logger, authenticate, menuItemRouter);
 
 function logger(req, res, next) {
   console.log(
